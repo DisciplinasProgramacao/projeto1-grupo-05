@@ -55,7 +55,15 @@ class Produto {
     this.maxEstoque=0;
   }  
   public float calcularImposto(){
-    return(0.18f/(this.getPrecoCusto()+this.getMargemLucro()));
+    return(0.18f/(this.getPrecoCusto()*this.getMargemLucro()));
+ }
+
+ public float calcularVenda(){
+    return((this.getPrecoCusto()*this.getMargemLucro())+calcularImposto());
+ }
+
+ public boolean emEstoque(){
+    return 0>this.getEstoque();
  }
 
   public float valorArrecadado(){
