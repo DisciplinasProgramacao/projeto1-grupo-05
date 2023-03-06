@@ -20,5 +20,14 @@ class ProdutoTest {
 	void testEmEstoque() {
 		assertTrue(p.emEstoque());
 	}
+	@Test
+	void testValorArrecadado() {
+		assertEquals(109.03,p.valorArrecadado(),0.01);
+	}
+	
+	@Test
+    	void testCalcularImposto() {
+        	assertEquals(5.54, p.calcularImposto(),0.01);
+	}		
 	
 }
