@@ -2,4 +2,4 @@
 Diagrama de classes
 </h1>
 
-<image src="./Github/images/Diagrama-de-classe.png" />
+<image src="./Github/images/diagrama-de-classes.png" />
