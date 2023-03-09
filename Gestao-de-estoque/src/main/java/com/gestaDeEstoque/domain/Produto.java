@@ -72,4 +72,8 @@ public class Produto {
     public float valorArrecadado(){
         return this.getPrecoCusto() * this.getMaxEstoque();
     }
+
+    public float calcularCusto(){
+        return(this.getEstoque() * this.getPrecoCusto());
+    }
 }
