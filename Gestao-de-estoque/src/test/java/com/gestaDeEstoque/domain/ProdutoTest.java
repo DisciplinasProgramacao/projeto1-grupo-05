@@ -31,4 +31,10 @@ class ProdutoTest {
     void testCalcularImposto() {
         assertEquals(5.54, p.calcularImposto(),0.01);
     }
+
+    @Test
+    void testCalcularCusto(){
+        assertEquals(66,p.calcularCusto(),0.01)
+    }
+
 }
