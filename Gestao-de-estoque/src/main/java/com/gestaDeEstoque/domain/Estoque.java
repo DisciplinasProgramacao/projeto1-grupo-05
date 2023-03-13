@@ -2,9 +2,9 @@ package com.gestaDeEstoque.domain;
 
 public class Estoque {
 
-    private Produto[] produtos;
+    public Produto[] produtos;
     private int quantidade;
-    private int valorTotal;
+    private float valorTotal;
     private int MAX_ESTOQUE = 100;
 
     public Estoque(int quantidadeDeEstoque) {
@@ -23,37 +23,56 @@ public class Estoque {
         return quantidade;
     }
 
-    public int getValorTotal() {
+    public float getValorTotal() {
         return valorTotal;
     }
 
-
-    public void repor(Produto produto, int novoEstoque) {
-        for(int i = 0; i < produtos.length; i++) {
-            
-            if(produtos[i].getNome().equals(produto.getNome())) {
-                produtos[i].setEstoque(produtos[i].getEstoque() + novoEstoque);
-                valorTotal += produtos[i].getEstoque();
-                quantidade++;
-            }
-        }
-    }
-
-
-    public void retirar(Produto produto, int novoEstoque) {
-
-        for(int i = 0; i < produtos.length; i++) {
-            
-            if(produtos[i].getNome().equals(produto.getNome())) {
-                produtos[i].setEstoque(produtos[i].getEstoque() - novoEstoque);
-                valorTotal -= produtos[i].getEstoque();
-                quantidade--;
-            }
-        }
-
+    public void setValorTotal() {
+      float total = 0;
+      for(int i = 0; i < quantidade; i++) {
+        total += produtos[i].valorTotal();
+      }
+      this.valorTotal = total;
     }
 
     public boolean dentroDoLimite() {
         return quantidade > 0;
     }
+
+    public void listarProdutos(int quantity){
+      System.out.println("Lista de produtos");
+      for(int i = 0; i < quantidade; i++){
+        if(produtos[i].getEstoque() < quantity){
+          System.out.println("  "+i+ "  -  " + produtos[i].getNome());
+          
+        }
+        
+      }
+      System.out.println("");
+     
+    }
+
+    public float valorDeReposicao(){
+      float totalValue = 0;
+
+      for(int i = 0; i < quantidade; i++){
+        totalValue += produtos[i].valorDeReposicao();
+      }
+
+      return totalValue;
+    }
+
+    public float totalArrecadado(){
+      float total = 0;
+      for(int i = 0; i < quantidade; i++) {
+        total += produtos[i].valorArrecadado();
+      }
+
+      return total;
+    }
+
+  public void cadProduto(Produto p) {
+    this.produtos[quantidade++] = p;
+  }
+  
 }

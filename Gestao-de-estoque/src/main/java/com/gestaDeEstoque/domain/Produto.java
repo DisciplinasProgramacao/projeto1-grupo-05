@@ -1,3 +1,6 @@
+
+package com.gestaDeEstoque.domain;
+
 import java.util.Scanner;
 
 public class Produto{
@@ -11,15 +14,6 @@ public class Produto{
   
   Scanner input = new Scanner(System.in);
 
-    public Produto(String nome, float precoCusto, float margemLucro, int estoque, int vendidos, int totalEstoque) {
-  		this.nome = nome;
-  		this.precoCusto = precoCusto;
-  		this.setMargemLucro(margemLucro);
-  		this.estoque = estoque;
-  		this.vendidos = vendidos;
-  		this.totalEstoque = totalEstoque;
-	  }
-  
 
     public Produto(String nome, float precoCusto, float margemLucro){
         this.nome=nome;
@@ -34,14 +28,18 @@ public class Produto{
         return margemLucro;
     }
     public void setMargemLucro(float margemLucro) {
+
         if(margemLucro<=80 && margemLucro>=30) {
+
           this.margemLucro = margemLucro;
         } else{
           System.out.println("Valor invalido");
           do {
             System.out.print("Digite a margem de lucro do produto(30% - 80%): ");
             margemLucro = input.nextFloat();
+
           } while(margemLucro <= 30 || margemLucro >= 80);
+
           this.margemLucro = margemLucro;
         }
     }
@@ -66,6 +64,7 @@ public class Produto{
     }
     public void setEstoque(int estoque) {
         this.estoque = estoque;
+
     }
     public int getVendidos() {
         return vendidos;
@@ -94,13 +93,19 @@ public class Produto{
         return this.calcularVenda() * this.getEstoque();
     }
 
+    public float valorTotal(){
+        return this.calcularVenda() * this.getEstoque();
+    }
+
     public float valorArrecadado(){
         return (this.calcularVenda() - this.getPrecoCusto() - this.calcularImposto()) * this.getVendidos();
     }
 
     public void imprimir(){
     	System.out.print("\nNome: " + nome + "\nPreco de custo: " + precoCusto + "\nEstoque: " + estoque + "\nVendidos: " + vendidos
+
 		   + "\nMargem de Lucro: " + margemLucro + "%");
+
     	System.out.printf("\nValor de venda = %.2f\n",this.calcularVenda());
     	
     }
@@ -125,3 +130,4 @@ public class Produto{
     }
 
 }
+

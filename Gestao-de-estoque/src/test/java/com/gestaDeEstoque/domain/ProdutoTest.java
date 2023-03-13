@@ -65,6 +65,7 @@ class ProdutoTest {
     	assertEquals(1770, p.valorTotal());
     }
 
+
     @Test
     @DisplayName("Teste do valor de reposição total de um produto")
     void testValorDeReposicao() {
@@ -72,3 +73,4 @@ class ProdutoTest {
     }
 
 }
+
