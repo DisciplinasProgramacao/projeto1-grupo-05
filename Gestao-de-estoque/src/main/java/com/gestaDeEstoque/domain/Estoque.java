@@ -7,8 +7,8 @@ public class Estoque {
     private int valorTotal;
     private int MAX_ESTOQUE = 100;
 
-    public Estoque(int quantidadeDeProdutos) {
-        produtos = new Produto[quantidadeDeProdutos];
+    public Estoque(int quantidadeDeEstoque) {
+        produtos = new Produto[quantidadeDeEstoque];
         quantidade = 0;
         valorTotal = 0;
     }
@@ -24,7 +24,9 @@ public class Estoque {
         for(int i = 0; i < produtos.length; i++) {
             
             if(produtos[i].getNome().equals(produto.getNome())) {
-                produtos[i].setEstoque(produto.getEstoque() + novoEstoque);
+                produtos[i].setEstoque(produtos[i].getEstoque() + novoEstoque);
+                valorTotal += produtos[i].getEstoque();
+                quantidade++;
             }
         }
     }
@@ -36,6 +38,8 @@ public class Estoque {
             
             if(produtos[i].getNome().equals(produto.getNome())) {
                 produtos[i].setEstoque(produtos[i].getEstoque() - novoEstoque);
+                valorTotal -= produtos[i].getEstoque();
+                quantidade--;
             }
         }
 
