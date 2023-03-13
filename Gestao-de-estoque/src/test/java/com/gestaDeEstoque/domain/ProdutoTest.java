@@ -1,6 +1,7 @@
 package com.gestaDeEstoque.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,5 +31,22 @@ class ProdutoTest {
     @Test
     void testCalcularImposto() {
         assertEquals(5.54, p.calcularImposto(),0.01);
+    }
+
+
+    @Test
+    @DisplayName("Testando se é possivel repor a quantidade do produto")
+    void repor() {
+        p.repor(2);
+
+        assertEquals(5, p.getEstoque());
+    }
+
+    @Test
+    @DisplayName("Testando se é possivel retirar a quantidade do produto")
+    void retirar() {
+        p.retirar(3);
+
+        assertEquals(0, p.getEstoque());
     }
 }

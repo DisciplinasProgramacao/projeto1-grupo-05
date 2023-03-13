@@ -17,36 +17,55 @@ class EstoqueTest {
     @Test
     @DisplayName("Testando se o estoque está dentro do limite")
     void estaDentroDoLimite() {
-        Produto produto = new Produto("test", 22, 10, 0, 30);
-        Estoque e = new Estoque();
-
-        e.repor(produto);
-
-        assertEquals(1, e.getQuantidade())
+        assertEquals(false, estoque.dentroDoLimite());
     }
 
     @Test
-    @DisplayName("Testando se é possivel repor o estoque")
-    void repor() {
-        Produto produto = new Produto("test", 22, 10, 0, 30);
-        Estoque e = new Estoque();
+    @DisplayName("Testando se pode adicionar um produto ao estoque")
+    void cadProduto() {
+        Produto produto = new Produto("test", 0, 0);
+        estoque.cadProduto(produto);
 
-        estoque.repor(produto);
-        e.repor(produto);
-
-        assertSame(e, estoque);
+        assertEquals(1, estoque.getQuantidade());
     }
 
     @Test
-    @DisplayName("Testando se é possivel retirar um produto do estoque")
-    void retirar() {
-        Produto produto = new Produto("test", 22, 10, 0, 30);
-        Estoque e = new Estoque();
+    @DisplayName("Testando o total arrecadado do estoque")
+    void totalArrecadado() {
+        Produto produto = new Produto("test", 10, 5);
 
-        e.repor(produto);
-        e.retirar(produto);
+        produto.repor(10);
 
-        assertEquals(0, e.getQuantidade());
+        estoque.cadProduto(produto);
+        assertEquals(100, estoque.totalArrecadado());
     }
+
+    @Test
+    @DisplayName("Testando o valor de reposição do estoque")
+    void valorDeReposicao() {
+        Produto produto = new Produto("test", 10, 5);
+
+        produto.repor(10);
+
+        estoque.cadProduto(produto);
+        assertEquals(100, estoque.valorDeReposicao());
+    }
+
+  @Test
+	void testListarProdutos() {
+		Produto produto = new Produto("test",30,30);
+		estoque.cadProduto(produto);
+		assertEquals("  0  -  test", estoque.listarProdutos(1000));
+	}
+	
+	@Test
+	void testSetValorTotal() {
+		Produto produto = new Produto("Picanha",40f,80,30,10,40);
+		Produto produto2 = new Produto("Pipoca premium gourmet",50f,50,20,15,60);
+		estoque.cadProduto(produto);
+		estoque.cadProduto(produto2);
+		estoque.setValorTotal();
+		assertEquals(4130,estoque.getValorTotal());
+	}
 
 }
