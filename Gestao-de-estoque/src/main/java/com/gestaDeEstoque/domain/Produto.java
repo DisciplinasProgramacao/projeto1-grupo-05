@@ -1,4 +1,6 @@
+
 package com.gestaDeEstoque.domain;
+
 import java.util.Scanner;
 
 public class Produto{
@@ -26,14 +28,18 @@ public class Produto{
         return margemLucro;
     }
     public void setMargemLucro(float margemLucro) {
-        if(margemLucro<80 && margemLucro>30) {
+
+        if(margemLucro<=80 && margemLucro>=30) {
+
           this.margemLucro = margemLucro;
         } else{
           System.out.println("Valor invalido");
           do {
             System.out.print("Digite a margem de lucro do produto(30% - 80%): ");
             margemLucro = input.nextFloat();
-          } while(margemLucro < 30 || margemLucro > 80);
+
+          } while(margemLucro <= 30 || margemLucro >= 80);
+
           this.margemLucro = margemLucro;
         }
     }
@@ -58,7 +64,7 @@ public class Produto{
     }
     public void setEstoque(int estoque) {
         this.estoque = estoque;
-        this.totalEstoque+=estoque;
+
     }
     public int getVendidos() {
         return vendidos;
@@ -80,7 +86,11 @@ public class Produto{
     }
 
     public boolean emEstoque(){
-        return 0>this.getEstoque();
+        return this.getEstoque()>0;
+    }
+
+    public float valorTotal(){
+        return this.calcularVenda() * this.getEstoque();
     }
 
     public float valorTotal(){
@@ -93,7 +103,9 @@ public class Produto{
 
     public void imprimir(){
     	System.out.print("\nNome: " + nome + "\nPreco de custo: " + precoCusto + "\nEstoque: " + estoque + "\nVendidos: " + vendidos
-		   + "\nMargem de Lucro: " + margemLucro);
+
+		   + "\nMargem de Lucro: " + margemLucro + "%");
+
     	System.out.printf("\nValor de venda = %.2f\n",this.calcularVenda());
     	
     }
@@ -104,7 +116,7 @@ public class Produto{
 
     public void repor(int quantidadeParaRepor) {
         this.setEstoque(this.getEstoque() + quantidadeParaRepor);
-  
+        this.totalEstoque+=quantidadeParaRepor;  
     }
 
     public float valorDeReposicao(){
@@ -114,6 +126,8 @@ public class Produto{
 
     public void retirar(int quantidadeParaRetirar) {
       this.setEstoque(this.getEstoque() - quantidadeParaRetirar);
+      this.vendidos+=quantidadeParaRetirar;
     }
 
 }
+
