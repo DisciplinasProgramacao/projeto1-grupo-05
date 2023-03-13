@@ -19,6 +19,14 @@ public class Estoque {
         valorTotal = 0;
     }
 
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public int getValorTotal() {
+        return valorTotal;
+    }
+
 
     public void repor(Produto produto, int novoEstoque) {
         for(int i = 0; i < produtos.length; i++) {

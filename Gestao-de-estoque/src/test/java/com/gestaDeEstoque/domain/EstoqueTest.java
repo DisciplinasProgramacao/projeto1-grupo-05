@@ -17,27 +17,36 @@ class EstoqueTest {
     @Test
     @DisplayName("Testando se o estoque está dentro do limite")
     void estaDentroDoLimite() {
+        Produto produto = new Produto("test", 22, 10, 0, 30);
+        Estoque e = new Estoque();
+
+        e.repor(produto);
+
+        assertEquals(1, e.getQuantidade())
     }
 
     @Test
     @DisplayName("Testando se é possivel repor o estoque")
     void repor() {
         Produto produto = new Produto("test", 22, 10, 0, 30);
-        estoque.
+        Estoque e = new Estoque();
 
+        estoque.repor(produto);
+        e.repor(produto);
 
-        assertEquals(e, estoque);
+        assertSame(e, estoque);
     }
 
     @Test
     @DisplayName("Testando se é possivel retirar um produto do estoque")
     void retirar() {
         Produto produto = new Produto("test", 22, 10, 0, 30);
-        Estoque e = new Estoque(produto);
+        Estoque e = new Estoque();
 
+        e.repor(produto);
         e.retirar(produto);
 
-        assertEquals(estoque, e);
+        assertEquals(0, e.getQuantidade());
     }
 
 }
