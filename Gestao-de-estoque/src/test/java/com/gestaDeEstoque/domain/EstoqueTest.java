@@ -23,9 +23,8 @@ class EstoqueTest {
     @DisplayName("Testando se é possivel repor o estoque")
     void repor() {
         Produto produto = new Produto("test", 22, 10, 0, 30);
-        Estoque e = new Estoque(produto);
+        estoque.
 
-        estoque.repor(produto);
 
         assertEquals(e, estoque);
     }
