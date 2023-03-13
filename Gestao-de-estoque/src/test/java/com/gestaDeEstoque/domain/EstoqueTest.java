@@ -22,7 +22,7 @@ class EstoqueTest {
 
         e.repor(produto);
 
-        assertEquals(1, e.getQuantidade())
+        assertEquals(1, e.getQuantidade());
     }
 
     @Test
@@ -48,5 +48,24 @@ class EstoqueTest {
 
         assertEquals(0, e.getQuantidade());
     }
+
+    @Test
+    @DisplayName("Testando se os produtos estão sendo listados")
+	void testListarProdutos() {
+		Produto produto = new Produto("test",30,30);
+		estoque.cadProduto(produto);
+		assertEquals("  0  -  test", estoque.listarProdutos(1000));
+	}
+	
+	@Test
+    @DisplayName("Testando se o valor total está sendo calculado")
+	void testSetValorTotal() {
+		Produto produto = new Produto("Picanha",40f,80,30,10,40);
+		Produto produto2 = new Produto("Pipoca premium gourmet",50f,50,20,15,60);
+		estoque.cadProduto(produto);
+		estoque.cadProduto(produto2);
+		estoque.setValorTotal();
+		assertEquals(4130,estoque.getValorTotal());
+	}
 
 }
